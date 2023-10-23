@@ -57,16 +57,16 @@ function App() {
         preferences: [],
         email: "",
         pass: "",
-        pets: [{ type: "cat", name: "tom", id: "" + Math.random() }],
+        pets: [],
       }}
-      // validate={(data) => {
-      //   const errors = {};
-      //   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email))
-      //     errors.email = "Invalid Email";
+      validate={(data) => {
+        const errors = {};
+        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email))
+          errors.email = "Invalid Email";
 
-      //   // console.log(error);
-      //   return errors;
-      // }} One way to validate is this and other way is using yup-library
+        // console.log(error);
+        return errors;
+      }} // One way to validate is this and other way is using yup-library
       validationSchema={validationSchema}
       onSubmit={(data, { setSubmitting, resetForm }) => {
         setSubmitting(true);
@@ -145,7 +145,7 @@ function App() {
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.email}
-              placeholder="E-mail"
+              placeholder="Mail"
             />
           </div>
           <div>
@@ -202,7 +202,11 @@ function App() {
             submit
           </Button>
           {/* {console.log(error)} */}
+          <br /> <br />
+          Form Inputs:
           <pre>{JSON.stringify(values, null, 2)}</pre>
+          <br />
+          Form Errors:
           <pre>{JSON.stringify(errors, null, 2)}</pre>
         </Form>
       )}
